@@ -35,6 +35,6 @@ def get_book_cover(url, title):
 
 try:
     for title, link in books:
-        print(f"Cover Image URL for {title}: {get_book_cover(link, title)}")
+        print(f"Downloaded cover Image URL for {title}: {get_book_cover(link, title)}")
 except Exception as e:
     print(f"Error during processing: {e}")
