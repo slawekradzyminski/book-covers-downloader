@@ -1,0 +1,4 @@
+.venv
+.idea
+downloaded_covers
+__pycache__
