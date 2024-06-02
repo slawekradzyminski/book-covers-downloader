@@ -1,6 +1,4 @@
-# Import the books list from books_list.py
 from books_list import books
-import os
 
 def sanitize_title(title):
     """Sanitize the book title to create a valid filename."""

@@ -1,5 +1,6 @@
 from openai import OpenAI
 import os
+# Will be created together with books covers
 from book_descriptions import book_descriptions
 
 client = OpenAI(api_key='')
