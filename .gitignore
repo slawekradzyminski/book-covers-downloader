@@ -3,8 +3,10 @@
 downloaded_covers
 __pycache__
 books.js
-book_descriptions.py
+book_descriptions_selenium.py
 ai_book_descriptions.py
 descriptions
 venv
+info
 
+.env
