@@ -18,10 +18,13 @@ class AmazonBookScraper:
             
             self._download_cover_image(file_path)
             
+            description = self._get_description()
+            
             return {
                 "title": title,
                 "link": url,
-                "path": file_path
+                "path": file_path,
+                "description": description
             }
         except Exception as e:
             return {"error": f"Error: {e}"}
@@ -47,3 +50,18 @@ class AmazonBookScraper:
             print(f"Image downloaded successfully: {file_path}")
         else:
             print(f"Image not found for {file_path}")
+
+    def _get_description(self):
+        try:
+            expander = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, '#bookDescription_feature_div .a-expander-prompt'))
+            )
+            expander.click()
+
+            description_element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.CSS_SELECTOR, '.a-expander-content-expanded'))
+            )
+            return description_element.text.strip()
+        except Exception as e:
+            print(f"Error getting description: {e}")
+            return ""

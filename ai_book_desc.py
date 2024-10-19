@@ -1,12 +1,9 @@
-import os
 import json
-from book_descriptions_selenium import book_descriptions
-from image_utils import sanitize_filename
 from openai_client import get_openai_client
 
 def rewrite_and_summarize(client, description):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[{
             "role": "user", 
             "content": f"Create a short and concise book description based on this description. Do not include any praise from anyone, just summarize the book:\n\n{description}"
@@ -22,10 +19,13 @@ def process_book_details():
     
     for book in book_details:
         title = book['title']
-        description = next((b['description'] for b in book_descriptions if b['title'] == title), None)
+        description = book.get('description')
+        print(f"Title: '{title}'")
+        print(f"Description before change: \n\n '{description}'")
         if description:
             new_description = rewrite_and_summarize(client, description)
             book['description'] = new_description
+            print(f"Description after change: \n\n '{new_description}'")
         else:
             print(f"No description found for '{title}'. Skipping...")
         
