@@ -36,7 +36,7 @@ class AmazonBookScraper:
         return title_element.text.strip()
 
     def _get_file_path(self, sanitized_title):
-        return os.path.join('downloaded_covers', sanitized_title + '.jpg')
+        return os.path.join('images/books', sanitized_title + '.jpg')
 
     def _download_cover_image(self, file_path):
         if os.path.exists(file_path):

@@ -8,5 +8,6 @@ ai_book_descriptions.py
 descriptions
 venv
 info
+images/books
 
 .env
